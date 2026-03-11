@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ details.name }} - Chennai Eats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    <style>
+        .menu-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            border-color: var(--primary);
+        }
+
+        .item-info h4 {
+            margin-bottom: 0.3rem;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/" class="logo">CHENNAI EATS</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Analytics</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero reveal">
+            <h1>{{ details.name }}</h1>
+            <p class="loc"><i class="fas fa-map-marker-alt"></i> {{ details.location }}</p>
+            <div style="margin-top: 1rem;">
+                <span class="rating-badge"><i class="fas fa-star"></i> {{ details.rating }}</span>
+                <span style="margin-left: 1rem; opacity: 0.8;">{{ details.category }}</span>
+            </div>
+        </div>
+
+        <div class="menu-list reveal" style="max-width: 800px; margin: 0 auto;">
+            <h2 style="margin-bottom: 2rem;">Menu Items</h2>
+            {% for item in items %}
+            <div class="menu-item">
+                <div class="item-info">
+                    <span class="{{ 'veg-dot' if item.category == 'veg' else 'non-veg-dot' }}"></span>
+                    <h4>{{ item.food_item }}</h4>
+                    <p class="price">₹{{ item.price }}</p>
+                </div>
+                <button class="btn btn-primary">Add to Bag</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

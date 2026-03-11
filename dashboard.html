@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Chennai Eats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <nav>
+        <a href="/" class="logo">CHENNAI EATS</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Analytics</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero reveal">
+            <h1>Platform Performance Insights</h1>
+            <p style="color: var(--text-dim);">Real-time data analysis of Chennai's top food destinations.</p>
+        </section>
+
+        <div class="dashboard-grid">
+            <div class="chart-container reveal">
+                <h3>Top 5 Restaurants (Rating + Popularity)</h3>
+                <canvas id="topRestaurantsChart"></canvas>
+            </div>
+
+            <div class="chart-container reveal">
+                <h3>Veg vs Non-Veg Item Distribution</h3>
+                <canvas id="categoryDistChart"></canvas>
+            </div>
+
+            <div class="chart-container reveal">
+                <h3>Average Price Comparison (per Restaurant)</h3>
+                <canvas id="priceComparisonChart"></canvas>
+            </div>
+
+            <div class="chart-container reveal">
+                <h3>Trending Dishes (Popularity Score)</h3>
+                <div id="topDishesList" style="margin-top: 1.5rem;">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+
+</html>

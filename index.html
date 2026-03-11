@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chennai Eats | Food Delivery & Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <a href="/" class="logo">CHENNAI EATS</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Analytics</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero reveal">
+            <h1>Top Rated Restaurants in Chennai</h1>
+            <p style="color: var(--text-dim);">Discover the best of Chennai's culinary scene across Veg and Non-Veg
+                categories.</p>
+        </section>
+
+        <div class="restaurant-grid">
+            {% for res in restaurants %}
+            <div class="restaurant-card reveal" onclick="location.href='/restaurant/{{ res.restaurant_name }}'">
+                <div class="image-placeholder">
+                    <i class="fas fa-utensils fa-3x"></i>
+                </div>
+                <div class="card-content">
+                    <h3>{{ res.restaurant_name }}</h3>
+                    <p class="loc">{{ res.location }}</p>
+                    <div class="footer-info">
+                        <span class="rating-badge">
+                            <i class="fas fa-star"></i> {{ res.rating }}
+                        </span>
+                        <span style="font-size: 0.9rem; color: var(--text-dim);">
+                            {{ res.category }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
